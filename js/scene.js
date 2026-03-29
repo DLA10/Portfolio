@@ -29,7 +29,7 @@
   camera.position.set(0, 0, 600);
 
   // --- Particle System ---
-  const PARTICLE_COUNT = 1800;
+  const PARTICLE_COUNT = 1820;
   const geometry = new THREE.BufferGeometry();
   const positions = new Float32Array(PARTICLE_COUNT * 3);
   const colors = new Float32Array(PARTICLE_COUNT * 3);

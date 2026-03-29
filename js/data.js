@@ -3,7 +3,7 @@
 // ============================================================
 
 export const profile = {
-  name: "Lalith Aditya D",
+  name: "Lalith Aditya",
   title: "Data Scientist & ML Engineer",
   tagline: "Turning raw data into intelligent systems",
   links: {
