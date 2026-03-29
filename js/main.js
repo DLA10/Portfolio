@@ -5,7 +5,7 @@
 (function () {
   // --- Typing Effect ---
   const phrases = [
-    "Data Scientist & ML Engineer",
+    "ML/AI Engineer",
     "Building Intelligent Systems",
     "Turning Data into Decisions",
     "Knowledge Graph Architect",
@@ -76,6 +76,20 @@
     }
   `;
   document.head.appendChild(style);
+
+  // --- Hide scroll hint when archives section enters viewport ---
+  const scrollHint = document.querySelector(".hero-scroll-hint");
+  const archivesSection = document.getElementById("projects");
+  if (scrollHint && archivesSection) {
+    window.addEventListener("scroll", () => {
+      const archivesTop = archivesSection.getBoundingClientRect().top;
+      if (archivesTop <= window.innerHeight) {
+        scrollHint.classList.add("hidden");
+      } else {
+        scrollHint.classList.remove("hidden");
+      }
+    });
+  }
 
   // --- Mobile Navigation ---
   const navToggle = document.getElementById("nav-toggle");

@@ -449,12 +449,14 @@ ul { list-style: none; }
   font-weight: 300;
 }
 
-/* Scroll hint */
+/* Scroll hint — pinned to bottom center of hero viewport */
 .hero-scroll-hint {
-  position: absolute;
-  bottom: -80px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: fixed;
+  bottom: 32px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -463,8 +465,15 @@ ul { list-style: none; }
   font-size: 0.7rem;
   color: var(--text-dim);
   letter-spacing: 2px;
+  z-index: 2;
   opacity: 0;
   animation: fadeUp 0.8s 1.4s forwards;
+  transition: opacity 0.5s;
+}
+
+.hero-scroll-hint.hidden {
+  opacity: 0 !important;
+  pointer-events: none;
 }
 
 .scroll-arrow {
@@ -535,10 +544,10 @@ ul { list-style: none; }
 .card-watermark {
   position: absolute;
   top: 0;
-  right: -20px;
-  width: 65%;
+  right: -10px;
+  width: 70%;
   height: 100%;
-  opacity: 0.04;
+  opacity: 0.09;
   pointer-events: none;
   transition: opacity 0.5s;
   display: flex;
@@ -551,7 +560,7 @@ ul { list-style: none; }
 }
 
 .project-card:hover .card-watermark {
-  opacity: 0.1;
+  opacity: 0.18;
 }
 
 .project-card[data-accent="#ef4444"] .card-watermark { color: var(--red); }
