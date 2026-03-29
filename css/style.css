@@ -312,7 +312,7 @@ ul { list-style: none; }
 
 @media (max-width: 768px) {
   .bat-anchor {
-    top: 70px;
+    top: 140px;
     right: 20px;
   }
   .bat { transform: scale(2); }
