@@ -31,7 +31,7 @@ export const locations = [
   {
     id: "uk",
     name: "United Kingdom",
-    label: "UK",
+    label: "London",
     color: { r: 0.13, g: 0.77, b: 0.37 },     // green
     hex: "#22c55e",
   },
