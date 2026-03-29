@@ -52,6 +52,272 @@ ul { list-style: none; }
   color: #fff;
 }
 
+/* ---------- Pixel Bat Animation ---------- */
+.bat-anchor {
+  position: fixed;
+  top: 120px;
+  right: 50px;
+  z-index: 90;
+  pointer-events: none;
+  animation: batDrift 5s ease-in-out infinite;
+  filter: drop-shadow(0 0 6px rgba(239, 68, 68, 0.6));
+}
+
+.bat {
+  width: 1px;
+  height: 1px;
+  transform: scale(3);
+  position: relative;
+  animation: batFlap 0.4s steps(1) infinite;
+}
+
+/* --- Frame 1: Wings up --- */
+@keyframes batFlap {
+  0% {
+    box-shadow:
+      /* left ear */
+      -4px -7px 0 0 #ef4444,
+      -3px -8px 0 0 #ef4444,
+      /* right ear */
+      4px -7px 0 0 #ef4444,
+      3px -8px 0 0 #ef4444,
+      /* head */
+      -2px -6px 0 0 #ef4444,
+      -1px -6px 0 0 #ef4444,
+      0px -6px 0 0 #ef4444,
+      1px -6px 0 0 #ef4444,
+      2px -6px 0 0 #ef4444,
+      -3px -5px 0 0 #ef4444,
+      -2px -5px 0 0 #ef4444,
+      -1px -5px 0 0 #ef4444,
+      0px -5px 0 0 #ef4444,
+      1px -5px 0 0 #ef4444,
+      2px -5px 0 0 #ef4444,
+      3px -5px 0 0 #ef4444,
+      /* eyes */
+      -2px -5px 0 0 #0a0a0f,
+      2px -5px 0 0 #0a0a0f,
+      /* body */
+      -2px -4px 0 0 #ef4444,
+      -1px -4px 0 0 #ef4444,
+      0px -4px 0 0 #ef4444,
+      1px -4px 0 0 #ef4444,
+      2px -4px 0 0 #ef4444,
+      -1px -3px 0 0 #ef4444,
+      0px -3px 0 0 #ef4444,
+      1px -3px 0 0 #ef4444,
+      -2px -2px 0 0 #ef4444,
+      -1px -2px 0 0 #ef4444,
+      0px -2px 0 0 #ef4444,
+      1px -2px 0 0 #ef4444,
+      2px -2px 0 0 #ef4444,
+      /* wings UP */
+      -3px -3px 0 0 #ef4444,
+      -4px -3px 0 0 #ef4444,
+      -5px -4px 0 0 #ef4444,
+      -6px -4px 0 0 #ef4444,
+      -7px -5px 0 0 #ef4444,
+      -8px -5px 0 0 #ef4444,
+      -9px -6px 0 0 #ef4444,
+      -10px -7px 0 0 #ef4444,
+      -11px -8px 0 0 #ef4444,
+      -12px -9px 0 0 #ef4444,
+      -10px -6px 0 0 #ef4444,
+      -9px -5px 0 0 #ef4444,
+      -8px -4px 0 0 #ef4444,
+      3px -3px 0 0 #ef4444,
+      4px -3px 0 0 #ef4444,
+      5px -4px 0 0 #ef4444,
+      6px -4px 0 0 #ef4444,
+      7px -5px 0 0 #ef4444,
+      8px -5px 0 0 #ef4444,
+      9px -6px 0 0 #ef4444,
+      10px -7px 0 0 #ef4444,
+      11px -8px 0 0 #ef4444,
+      12px -9px 0 0 #ef4444,
+      10px -6px 0 0 #ef4444,
+      9px -5px 0 0 #ef4444,
+      8px -4px 0 0 #ef4444,
+      /* wing membrane */
+      -7px -4px 0 0 #ef4444,
+      -6px -3px 0 0 #ef4444,
+      -5px -3px 0 0 #ef4444,
+      7px -4px 0 0 #ef4444,
+      6px -3px 0 0 #ef4444,
+      5px -3px 0 0 #ef4444,
+      /* feet */
+      -1px -1px 0 0 #ef4444,
+      1px -1px 0 0 #ef4444;
+  }
+  33% {
+    box-shadow:
+      /* ears */
+      -4px -7px 0 0 #ef4444,
+      -3px -8px 0 0 #ef4444,
+      4px -7px 0 0 #ef4444,
+      3px -8px 0 0 #ef4444,
+      /* head */
+      -2px -6px 0 0 #ef4444,
+      -1px -6px 0 0 #ef4444,
+      0px -6px 0 0 #ef4444,
+      1px -6px 0 0 #ef4444,
+      2px -6px 0 0 #ef4444,
+      -3px -5px 0 0 #ef4444,
+      -2px -5px 0 0 #ef4444,
+      -1px -5px 0 0 #ef4444,
+      0px -5px 0 0 #ef4444,
+      1px -5px 0 0 #ef4444,
+      2px -5px 0 0 #ef4444,
+      3px -5px 0 0 #ef4444,
+      /* eyes */
+      -2px -5px 0 0 #0a0a0f,
+      2px -5px 0 0 #0a0a0f,
+      /* body */
+      -2px -4px 0 0 #ef4444,
+      -1px -4px 0 0 #ef4444,
+      0px -4px 0 0 #ef4444,
+      1px -4px 0 0 #ef4444,
+      2px -4px 0 0 #ef4444,
+      -1px -3px 0 0 #ef4444,
+      0px -3px 0 0 #ef4444,
+      1px -3px 0 0 #ef4444,
+      -2px -2px 0 0 #ef4444,
+      -1px -2px 0 0 #ef4444,
+      0px -2px 0 0 #ef4444,
+      1px -2px 0 0 #ef4444,
+      2px -2px 0 0 #ef4444,
+      /* wings SPREAD flat */
+      -3px -3px 0 0 #ef4444,
+      -4px -3px 0 0 #ef4444,
+      -5px -3px 0 0 #ef4444,
+      -6px -3px 0 0 #ef4444,
+      -7px -3px 0 0 #ef4444,
+      -8px -3px 0 0 #ef4444,
+      -9px -3px 0 0 #ef4444,
+      -10px -3px 0 0 #ef4444,
+      -11px -3px 0 0 #ef4444,
+      -12px -3px 0 0 #ef4444,
+      -11px -4px 0 0 #ef4444,
+      -10px -4px 0 0 #ef4444,
+      3px -3px 0 0 #ef4444,
+      4px -3px 0 0 #ef4444,
+      5px -3px 0 0 #ef4444,
+      6px -3px 0 0 #ef4444,
+      7px -3px 0 0 #ef4444,
+      8px -3px 0 0 #ef4444,
+      9px -3px 0 0 #ef4444,
+      10px -3px 0 0 #ef4444,
+      11px -3px 0 0 #ef4444,
+      12px -3px 0 0 #ef4444,
+      11px -4px 0 0 #ef4444,
+      10px -4px 0 0 #ef4444,
+      /* membrane */
+      -9px -4px 0 0 #ef4444,
+      -8px -4px 0 0 #ef4444,
+      -7px -4px 0 0 #ef4444,
+      -6px -4px 0 0 #ef4444,
+      -5px -4px 0 0 #ef4444,
+      9px -4px 0 0 #ef4444,
+      8px -4px 0 0 #ef4444,
+      7px -4px 0 0 #ef4444,
+      6px -4px 0 0 #ef4444,
+      5px -4px 0 0 #ef4444,
+      /* feet */
+      -1px -1px 0 0 #ef4444,
+      1px -1px 0 0 #ef4444;
+  }
+  66% {
+    box-shadow:
+      /* ears */
+      -4px -7px 0 0 #ef4444,
+      -3px -8px 0 0 #ef4444,
+      4px -7px 0 0 #ef4444,
+      3px -8px 0 0 #ef4444,
+      /* head */
+      -2px -6px 0 0 #ef4444,
+      -1px -6px 0 0 #ef4444,
+      0px -6px 0 0 #ef4444,
+      1px -6px 0 0 #ef4444,
+      2px -6px 0 0 #ef4444,
+      -3px -5px 0 0 #ef4444,
+      -2px -5px 0 0 #ef4444,
+      -1px -5px 0 0 #ef4444,
+      0px -5px 0 0 #ef4444,
+      1px -5px 0 0 #ef4444,
+      2px -5px 0 0 #ef4444,
+      3px -5px 0 0 #ef4444,
+      /* eyes */
+      -2px -5px 0 0 #0a0a0f,
+      2px -5px 0 0 #0a0a0f,
+      /* body */
+      -2px -4px 0 0 #ef4444,
+      -1px -4px 0 0 #ef4444,
+      0px -4px 0 0 #ef4444,
+      1px -4px 0 0 #ef4444,
+      2px -4px 0 0 #ef4444,
+      -1px -3px 0 0 #ef4444,
+      0px -3px 0 0 #ef4444,
+      1px -3px 0 0 #ef4444,
+      -2px -2px 0 0 #ef4444,
+      -1px -2px 0 0 #ef4444,
+      0px -2px 0 0 #ef4444,
+      1px -2px 0 0 #ef4444,
+      2px -2px 0 0 #ef4444,
+      /* wings DOWN */
+      -3px -3px 0 0 #ef4444,
+      -4px -2px 0 0 #ef4444,
+      -5px -1px 0 0 #ef4444,
+      -6px -1px 0 0 #ef4444,
+      -7px 0px 0 0 #ef4444,
+      -8px 0px 0 0 #ef4444,
+      -9px 1px 0 0 #ef4444,
+      -10px 2px 0 0 #ef4444,
+      -11px 3px 0 0 #ef4444,
+      -12px 4px 0 0 #ef4444,
+      -10px 1px 0 0 #ef4444,
+      -9px 0px 0 0 #ef4444,
+      3px -3px 0 0 #ef4444,
+      4px -2px 0 0 #ef4444,
+      5px -1px 0 0 #ef4444,
+      6px -1px 0 0 #ef4444,
+      7px 0px 0 0 #ef4444,
+      8px 0px 0 0 #ef4444,
+      9px 1px 0 0 #ef4444,
+      10px 2px 0 0 #ef4444,
+      11px 3px 0 0 #ef4444,
+      12px 4px 0 0 #ef4444,
+      10px 1px 0 0 #ef4444,
+      9px 0px 0 0 #ef4444,
+      /* membrane */
+      -7px -1px 0 0 #ef4444,
+      -6px -2px 0 0 #ef4444,
+      -5px -2px 0 0 #ef4444,
+      7px -1px 0 0 #ef4444,
+      6px -2px 0 0 #ef4444,
+      5px -2px 0 0 #ef4444,
+      /* feet */
+      -1px -1px 0 0 #ef4444,
+      1px -1px 0 0 #ef4444;
+  }
+}
+
+@keyframes batDrift {
+  0%   { transform: translateY(0) translateX(0); }
+  20%  { transform: translateY(-12px) translateX(6px); }
+  40%  { transform: translateY(3px) translateX(-4px); }
+  60%  { transform: translateY(-8px) translateX(-8px); }
+  80%  { transform: translateY(5px) translateX(5px); }
+  100% { transform: translateY(0) translateX(0); }
+}
+
+@media (max-width: 768px) {
+  .bat-anchor {
+    top: 70px;
+    right: 20px;
+  }
+  .bat { transform: scale(2); }
+}
+
 /* ---------- 3D Canvas Background ---------- */
 #bg-canvas {
   position: fixed;
@@ -554,9 +820,11 @@ ul { list-style: none; }
   align-items: center;
 }
 
-.card-watermark svg {
+.card-watermark svg,
+.card-watermark canvas {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: contain;
 }
 
 .project-card:hover .card-watermark {

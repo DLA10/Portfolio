@@ -25,6 +25,9 @@
   <!-- ========== 3D CANVAS BACKGROUND ========== -->
   <canvas id="bg-canvas"></canvas>
 
+  <!-- ========== PIXEL BAT ========== -->
+  <div class="bat-anchor"><div class="bat"></div></div>
+
   <!-- ========== NAVIGATION ========== -->
   <nav id="navbar">
     <div class="nav-brand">
@@ -91,71 +94,8 @@
       <div class="projects-grid" id="projects-grid">
         <!-- Card 1: Signal Pair Arbitrage Engine -->
         <div class="project-card" data-project="signal-pair" data-accent="#ef4444">
-          <div class="card-watermark" id="wm-candlestick">
-            <svg viewBox="0 0 520 420" xmlns="http://www.w3.org/2000/svg">
-              <!-- Realistic Candlestick Chart -->
-              <!-- Y-axis -->
-              <line x1="30" y1="10" x2="30" y2="400" stroke="currentColor" stroke-width="1" opacity="0.25"/>
-              <!-- X-axis -->
-              <line x1="30" y1="400" x2="510" y2="400" stroke="currentColor" stroke-width="1" opacity="0.25"/>
-              <!-- Y-axis price ticks -->
-              <line x1="25" y1="60" x2="30" y2="60" stroke="currentColor" stroke-width="1" opacity="0.3"/><text x="8" y="64" fill="currentColor" font-size="8" opacity="0.2">350</text>
-              <line x1="25" y1="130" x2="30" y2="130" stroke="currentColor" stroke-width="1" opacity="0.3"/><text x="8" y="134" fill="currentColor" font-size="8" opacity="0.2">300</text>
-              <line x1="25" y1="200" x2="30" y2="200" stroke="currentColor" stroke-width="1" opacity="0.3"/><text x="8" y="204" fill="currentColor" font-size="8" opacity="0.2">250</text>
-              <line x1="25" y1="270" x2="30" y2="270" stroke="currentColor" stroke-width="1" opacity="0.3"/><text x="8" y="274" fill="currentColor" font-size="8" opacity="0.2">200</text>
-              <line x1="25" y1="340" x2="30" y2="340" stroke="currentColor" stroke-width="1" opacity="0.3"/><text x="8" y="344" fill="currentColor" font-size="8" opacity="0.2">150</text>
-              <!-- Horizontal grid -->
-              <line x1="30" y1="60" x2="510" y2="60" stroke="currentColor" stroke-width="0.4" opacity="0.08" stroke-dasharray="4,6"/>
-              <line x1="30" y1="130" x2="510" y2="130" stroke="currentColor" stroke-width="0.4" opacity="0.08" stroke-dasharray="4,6"/>
-              <line x1="30" y1="200" x2="510" y2="200" stroke="currentColor" stroke-width="0.4" opacity="0.08" stroke-dasharray="4,6"/>
-              <line x1="30" y1="270" x2="510" y2="270" stroke="currentColor" stroke-width="0.4" opacity="0.08" stroke-dasharray="4,6"/>
-              <line x1="30" y1="340" x2="510" y2="340" stroke="currentColor" stroke-width="0.4" opacity="0.08" stroke-dasharray="4,6"/>
-              <!-- Candle 1 bearish (open high, close low = filled) -->
-              <line x1="65" y1="80" x2="65" y2="330" stroke="currentColor" stroke-width="1.5" opacity="0.6"/>
-              <rect x="53" y="120" width="24" height="130" fill="currentColor" opacity="0.55" rx="1"/>
-              <!-- Candle 2 bullish (open low, close high = hollow) -->
-              <line x1="110" y1="100" x2="110" y2="360" stroke="currentColor" stroke-width="1.5" opacity="0.6"/>
-              <rect x="98" y="100" width="24" height="160" fill="none" stroke="currentColor" stroke-width="1.8" opacity="0.6" rx="1"/>
-              <!-- Candle 3 bearish doji (small body) -->
-              <line x1="155" y1="60" x2="155" y2="280" stroke="currentColor" stroke-width="1.5" opacity="0.6"/>
-              <rect x="143" y="140" width="24" height="12" fill="currentColor" opacity="0.7" rx="1"/>
-              <!-- Candle 4 bearish large -->
-              <line x1="200" y1="50" x2="200" y2="310" stroke="currentColor" stroke-width="1.5" opacity="0.6"/>
-              <rect x="188" y="80" width="24" height="170" fill="currentColor" opacity="0.55" rx="1"/>
-              <!-- Candle 5 bullish hammer -->
-              <line x1="245" y1="140" x2="245" y2="380" stroke="currentColor" stroke-width="1.5" opacity="0.6"/>
-              <rect x="233" y="140" width="24" height="40" fill="none" stroke="currentColor" stroke-width="1.8" opacity="0.6" rx="1"/>
-              <!-- Candle 6 bullish -->
-              <line x1="290" y1="90" x2="290" y2="300" stroke="currentColor" stroke-width="1.5" opacity="0.6"/>
-              <rect x="278" y="90" width="24" height="120" fill="none" stroke="currentColor" stroke-width="1.8" opacity="0.6" rx="1"/>
-              <!-- Candle 7 bearish -->
-              <line x1="335" y1="70" x2="335" y2="290" stroke="currentColor" stroke-width="1.5" opacity="0.6"/>
-              <rect x="323" y="100" width="24" height="110" fill="currentColor" opacity="0.55" rx="1"/>
-              <!-- Candle 8 bullish engulfing -->
-              <line x1="380" y1="85" x2="380" y2="350" stroke="currentColor" stroke-width="1.5" opacity="0.6"/>
-              <rect x="368" y="85" width="24" height="180" fill="none" stroke="currentColor" stroke-width="1.8" opacity="0.6" rx="1"/>
-              <!-- Candle 9 bearish -->
-              <line x1="425" y1="55" x2="425" y2="260" stroke="currentColor" stroke-width="1.5" opacity="0.6"/>
-              <rect x="413" y="90" width="24" height="100" fill="currentColor" opacity="0.55" rx="1"/>
-              <!-- Candle 10 bullish -->
-              <line x1="470" y1="75" x2="470" y2="320" stroke="currentColor" stroke-width="1.5" opacity="0.6"/>
-              <rect x="458" y="75" width="24" height="140" fill="none" stroke="currentColor" stroke-width="1.8" opacity="0.6" rx="1"/>
-              <!-- EMA 20 moving average -->
-              <path d="M65,190 C110,175 155,148 200,170 C245,195 290,160 335,155 C380,150 425,130 470,145" fill="none" stroke="currentColor" stroke-width="1.8" opacity="0.35" stroke-linecap="round"/>
-              <!-- EMA 50 moving average -->
-              <path d="M65,220 C110,210 155,195 200,205 C245,215 290,200 335,195 C380,188 425,175 470,180" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.2" stroke-dasharray="5,5" stroke-linecap="round"/>
-              <!-- Volume bars at bottom -->
-              <rect x="55" y="380" width="20" height="18" fill="currentColor" opacity="0.15" rx="1"/>
-              <rect x="100" y="370" width="20" height="28" fill="currentColor" opacity="0.15" rx="1"/>
-              <rect x="145" y="388" width="20" height="10" fill="currentColor" opacity="0.1" rx="1"/>
-              <rect x="190" y="365" width="20" height="33" fill="currentColor" opacity="0.15" rx="1"/>
-              <rect x="235" y="375" width="20" height="23" fill="currentColor" opacity="0.15" rx="1"/>
-              <rect x="280" y="378" width="20" height="20" fill="currentColor" opacity="0.12" rx="1"/>
-              <rect x="325" y="372" width="20" height="26" fill="currentColor" opacity="0.15" rx="1"/>
-              <rect x="370" y="360" width="20" height="38" fill="currentColor" opacity="0.15" rx="1"/>
-              <rect x="415" y="382" width="20" height="16" fill="currentColor" opacity="0.1" rx="1"/>
-              <rect x="460" y="368" width="20" height="30" fill="currentColor" opacity="0.15" rx="1"/>
-            </svg>
+          <div class="card-watermark">
+            <canvas id="wm-candlestick" width="500" height="500"></canvas>
           </div>
           <div class="card-content">
             <h3 class="card-title">Signal Pair<br/>Arbitrage Engine</h3>
@@ -173,72 +113,8 @@
 
         <!-- Card 2: Molecule Audit Foundry -->
         <div class="project-card" data-project="molecule-audit" data-accent="#22c55e">
-          <div class="card-watermark" id="wm-dna">
-            <svg viewBox="0 0 520 440" xmlns="http://www.w3.org/2000/svg">
-              <!-- Realistic DNA Double Helix x2 with 3D crossover -->
-              <!-- HELIX 1 (foreground, left-center) -->
-              <g opacity="0.8">
-                <!-- Backbone strand A — sinusoidal -->
-                <path d="M80,5 C150,30 150,60 80,85 C10,110 10,140 80,165 C150,190 150,220 80,245 C10,270 10,300 80,325 C150,350 150,380 80,405 C10,430 10,440 40,440" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-                <!-- Backbone strand B — counter-sinusoidal -->
-                <path d="M220,5 C150,30 150,60 220,85 C290,110 290,140 220,165 C150,190 150,220 220,245 C290,270 290,300 220,325 C150,350 150,380 220,405 C290,430 290,440 260,440" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-                <!-- Base pair rungs (hydrogen bonds) — drawn at crossover midpoints -->
-                <line x1="95" y1="17" x2="205" y2="17" stroke="currentColor" stroke-width="1.8" opacity="0.4"/>
-                <line x1="130" y1="42" x2="170" y2="42" stroke="currentColor" stroke-width="1.2" opacity="0.25"/>
-                <line x1="80" y1="85" x2="220" y2="85" stroke="currentColor" stroke-width="1.8" opacity="0.4"/>
-                <line x1="130" y1="122" x2="170" y2="122" stroke="currentColor" stroke-width="1.2" opacity="0.25"/>
-                <line x1="80" y1="165" x2="220" y2="165" stroke="currentColor" stroke-width="1.8" opacity="0.4"/>
-                <line x1="130" y1="202" x2="170" y2="202" stroke="currentColor" stroke-width="1.2" opacity="0.25"/>
-                <line x1="80" y1="245" x2="220" y2="245" stroke="currentColor" stroke-width="1.8" opacity="0.4"/>
-                <line x1="130" y1="282" x2="170" y2="282" stroke="currentColor" stroke-width="1.2" opacity="0.25"/>
-                <line x1="80" y1="325" x2="220" y2="325" stroke="currentColor" stroke-width="1.8" opacity="0.4"/>
-                <line x1="130" y1="362" x2="170" y2="362" stroke="currentColor" stroke-width="1.2" opacity="0.25"/>
-                <line x1="80" y1="405" x2="220" y2="405" stroke="currentColor" stroke-width="1.8" opacity="0.4"/>
-                <!-- Nucleotide pairs (A-T / C-G dots) -->
-                <circle cx="120" cy="17" r="4" fill="currentColor" opacity="0.35"/>
-                <circle cx="180" cy="17" r="4" fill="currentColor" opacity="0.35"/>
-                <circle cx="120" cy="85" r="4" fill="currentColor" opacity="0.35"/>
-                <circle cx="180" cy="85" r="4" fill="currentColor" opacity="0.35"/>
-                <circle cx="120" cy="165" r="4" fill="currentColor" opacity="0.35"/>
-                <circle cx="180" cy="165" r="4" fill="currentColor" opacity="0.35"/>
-                <circle cx="120" cy="245" r="4" fill="currentColor" opacity="0.35"/>
-                <circle cx="180" cy="245" r="4" fill="currentColor" opacity="0.35"/>
-                <circle cx="120" cy="325" r="4" fill="currentColor" opacity="0.35"/>
-                <circle cx="180" cy="325" r="4" fill="currentColor" opacity="0.35"/>
-                <circle cx="120" cy="405" r="4" fill="currentColor" opacity="0.35"/>
-                <circle cx="180" cy="405" r="4" fill="currentColor" opacity="0.35"/>
-                <!-- Phosphate backbone nodes -->
-                <circle cx="80" cy="5" r="3" fill="currentColor" opacity="0.3"/>
-                <circle cx="220" cy="5" r="3" fill="currentColor" opacity="0.3"/>
-                <circle cx="80" cy="85" r="3" fill="currentColor" opacity="0.3"/>
-                <circle cx="220" cy="85" r="3" fill="currentColor" opacity="0.3"/>
-                <circle cx="80" cy="165" r="3" fill="currentColor" opacity="0.3"/>
-                <circle cx="220" cy="165" r="3" fill="currentColor" opacity="0.3"/>
-                <circle cx="80" cy="245" r="3" fill="currentColor" opacity="0.3"/>
-                <circle cx="220" cy="245" r="3" fill="currentColor" opacity="0.3"/>
-                <circle cx="80" cy="325" r="3" fill="currentColor" opacity="0.3"/>
-                <circle cx="220" cy="325" r="3" fill="currentColor" opacity="0.3"/>
-              </g>
-              <!-- HELIX 2 (background, right, offset and fainter) -->
-              <g opacity="0.45" transform="translate(240, 25)">
-                <path d="M60,0 C120,22 120,48 60,70 C0,92 0,118 60,140 C120,162 120,188 60,210 C0,232 0,258 60,280 C120,302 120,328 60,350 C0,372 0,395 30,400" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-                <path d="M180,0 C120,22 120,48 180,70 C240,92 240,118 180,140 C120,162 120,188 180,210 C240,232 240,258 180,280 C120,302 120,328 180,350 C240,372 240,395 210,400" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-                <line x1="72" y1="12" x2="168" y2="12" stroke="currentColor" stroke-width="1.2" opacity="0.3"/>
-                <line x1="60" y1="70" x2="180" y2="70" stroke="currentColor" stroke-width="1.2" opacity="0.3"/>
-                <line x1="60" y1="140" x2="180" y2="140" stroke="currentColor" stroke-width="1.2" opacity="0.3"/>
-                <line x1="60" y1="210" x2="180" y2="210" stroke="currentColor" stroke-width="1.2" opacity="0.3"/>
-                <line x1="60" y1="280" x2="180" y2="280" stroke="currentColor" stroke-width="1.2" opacity="0.3"/>
-                <line x1="60" y1="350" x2="180" y2="350" stroke="currentColor" stroke-width="1.2" opacity="0.3"/>
-                <circle cx="100" cy="70" r="3" fill="currentColor" opacity="0.25"/>
-                <circle cx="140" cy="70" r="3" fill="currentColor" opacity="0.25"/>
-                <circle cx="100" cy="140" r="3" fill="currentColor" opacity="0.25"/>
-                <circle cx="140" cy="140" r="3" fill="currentColor" opacity="0.25"/>
-                <circle cx="100" cy="210" r="3" fill="currentColor" opacity="0.25"/>
-                <circle cx="140" cy="210" r="3" fill="currentColor" opacity="0.25"/>
-                <circle cx="100" cy="280" r="3" fill="currentColor" opacity="0.25"/>
-                <circle cx="140" cy="280" r="3" fill="currentColor" opacity="0.25"/>
-              </g>
-            </svg>
+          <div class="card-watermark">
+            <canvas id="wm-dna" width="500" height="500"></canvas>
           </div>
           <div class="card-content">
             <h3 class="card-title">Molecule Audit<br/>Foundry</h3>
@@ -256,54 +132,8 @@
 
         <!-- Card 3: Clinical Intelligence Graph RAG -->
         <div class="project-card" data-project="clinical-rag" data-accent="#8b5cf6">
-          <div class="card-watermark" id="wm-asclepius">
-            <svg viewBox="0 0 400 440" xmlns="http://www.w3.org/2000/svg">
-              <!-- Realistic Rod of Asclepius -->
-              <!-- Rod — tapered wooden staff -->
-              <path d="M200,12 L200,430" stroke="currentColor" stroke-width="6" opacity="0.5" stroke-linecap="round"/>
-              <!-- Rod wood grain texture lines -->
-              <path d="M197,40 L197,420" stroke="currentColor" stroke-width="0.6" opacity="0.15"/>
-              <path d="M203,30 L203,425" stroke="currentColor" stroke-width="0.6" opacity="0.15"/>
-              <!-- Rod ornamental knob top -->
-              <ellipse cx="200" cy="12" rx="10" ry="7" fill="currentColor" opacity="0.45"/>
-              <ellipse cx="200" cy="12" rx="6" ry="4" fill="currentColor" opacity="0.25"/>
-              <!-- Rod base foot -->
-              <ellipse cx="200" cy="430" rx="12" ry="5" fill="currentColor" opacity="0.3"/>
-              <!-- Snake body — realistic S-curves wrapping the rod, thicker at mid-body -->
-              <!-- Lower coil (tail end, thinner) -->
-              <path d="M200,410 C215,408 235,398 245,385 C260,365 255,348 235,340 C215,332 195,335 185,340" fill="none" stroke="currentColor" stroke-width="3" opacity="0.55" stroke-linecap="round"/>
-              <!-- Coil crossing behind rod -->
-              <path d="M185,340 C170,348 160,360 165,345 C168,335 180,318 200,310" fill="none" stroke="currentColor" stroke-width="2.5" opacity="0.35" stroke-linecap="round"/>
-              <!-- Mid-lower coil (thicker) -->
-              <path d="M200,310 C225,300 260,285 265,265 C270,245 250,232 225,228 C200,224 185,230 180,238" fill="none" stroke="currentColor" stroke-width="4" opacity="0.6" stroke-linecap="round"/>
-              <!-- Cross behind -->
-              <path d="M180,238 C172,248 165,260 170,248 C175,235 190,218 200,210" fill="none" stroke="currentColor" stroke-width="3" opacity="0.35" stroke-linecap="round"/>
-              <!-- Mid-upper coil (thickest, belly) -->
-              <path d="M200,210 C230,198 270,178 272,155 C274,132 248,118 220,115 C195,112 178,120 175,132" fill="none" stroke="currentColor" stroke-width="4.5" opacity="0.65" stroke-linecap="round"/>
-              <!-- Cross behind -->
-              <path d="M175,132 C170,142 165,155 168,140 C172,128 188,110 200,102" fill="none" stroke="currentColor" stroke-width="3" opacity="0.35" stroke-linecap="round"/>
-              <!-- Upper coil (tapering toward head) -->
-              <path d="M200,102 C225,92 255,75 255,55 C255,38 240,28 220,25 C205,23 195,28 192,35" fill="none" stroke="currentColor" stroke-width="3.5" opacity="0.6" stroke-linecap="round"/>
-              <!-- Snake belly scales — subtle cross-hatching -->
-              <path d="M240,380 C242,376 241,372" stroke="currentColor" stroke-width="0.8" opacity="0.2"/>
-              <path d="M255,270 C258,265 256,260" stroke="currentColor" stroke-width="0.8" opacity="0.2"/>
-              <path d="M260,160 C263,155 261,150" stroke="currentColor" stroke-width="0.8" opacity="0.2"/>
-              <path d="M245,60 C248,55 246,50" stroke="currentColor" stroke-width="0.8" opacity="0.2"/>
-              <path d="M230,340 L225,335" stroke="currentColor" stroke-width="0.5" opacity="0.15"/>
-              <path d="M245,240 L240,235" stroke="currentColor" stroke-width="0.5" opacity="0.15"/>
-              <path d="M248,135 L243,130" stroke="currentColor" stroke-width="0.5" opacity="0.15"/>
-              <!-- Snake head — triangular, detailed -->
-              <path d="M192,35 C188,30 182,24 178,22 C174,20 170,22 170,26 C170,30 175,35 180,37 C185,39 190,38 192,35 Z" fill="currentColor" opacity="0.55"/>
-              <!-- Head top plate -->
-              <path d="M180,24 C183,22 188,22 190,25" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.3"/>
-              <!-- Eye -->
-              <circle cx="178" cy="28" r="2.5" fill="currentColor" opacity="0.7"/>
-              <circle cx="178" cy="28" r="1" fill="#0a0a0f"/>
-              <!-- Nostril -->
-              <circle cx="172" cy="25" r="0.8" fill="currentColor" opacity="0.3"/>
-              <!-- Forked tongue -->
-              <path d="M170,26 L158,22 M170,26 L160,30" stroke="currentColor" stroke-width="1" opacity="0.45" stroke-linecap="round"/>
-            </svg>
+          <div class="card-watermark">
+            <canvas id="wm-asclepius" width="500" height="500"></canvas>
           </div>
           <div class="card-content">
             <h3 class="card-title">Clinical Intelligence<br/>Graph RAG</h3>
@@ -476,6 +306,7 @@
 
   <!-- ========== SCRIPTS ========== -->
   <script src="js/scene.js"></script>
+  <script src="js/watermarks.js"></script>
   <script src="js/animations.js"></script>
   <script src="js/main.js"></script>
 </body>
