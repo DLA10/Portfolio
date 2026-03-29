@@ -52,22 +52,23 @@ ul { list-style: none; }
   color: #fff;
 }
 
-/* ---------- 3D Bat Canvas ---------- */
+/* ---------- Spaceship Canvas ---------- */
 #bat-canvas {
   position: fixed;
-  top: 0;
+  top: 58px;
   left: 50%;
   transform: translateX(-50%);
-  width: 200px;
-  height: 120px;
+  width: 120px;
+  height: 100px;
   z-index: 90;
   pointer-events: none;
 }
 
 @media (max-width: 768px) {
   #bat-canvas {
-    width: 130px;
-    height: 80px;
+    top: 62px;
+    width: 100px;
+    height: 85px;
   }
 }
 

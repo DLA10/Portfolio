@@ -1,5 +1,5 @@
 // ============================================================
-// 3D Animated Bat — Canvas rendered, top center
+// Animated Spaceship — Canvas, top center, retro sci-fi style
 // ============================================================
 
 (function () {
@@ -7,7 +7,7 @@
   if (!canvas) return;
 
   const DPR = Math.min(window.devicePixelRatio || 1, 2);
-  let W = 200, H = 120;
+  let W, H;
 
   function resize() {
     W = canvas.clientWidth;
@@ -20,11 +20,6 @@
 
   const ctx = canvas.getContext("2d");
 
-  // Bat color
-  const BAT_COLOR = "#ef4444";
-  const BAT_DARK = "#8b1a1a";
-  const EYE_COLOR = "#ff6b6b";
-
   function animate(time) {
     requestAnimationFrame(animate);
     ctx.save();
@@ -33,289 +28,279 @@
 
     const t = time * 0.001;
     const cx = W / 2;
-    const cy = H / 2 + 8;
+    const cy = H / 2;
 
-    // Floating motion
-    const floatY = Math.sin(t * 1.2) * 5;
-    const floatX = Math.sin(t * 0.7) * 3;
-    const tilt = Math.sin(t * 0.9) * 0.05;
+    // Gentle floating motion
+    const floatY = Math.sin(t * 1.5) * 3;
+    const floatX = Math.sin(t * 0.9) * 2;
+    const tilt = Math.sin(t * 1.1) * 0.04;
 
     ctx.translate(cx + floatX, cy + floatY);
     ctx.rotate(tilt);
 
-    // Wing flap angle (smooth sinusoidal)
-    const flapAngle = Math.sin(t * 8) * 0.55 + 0.1;
-    const flapAngle2 = Math.sin(t * 8 + 0.3) * 0.45; // secondary joint delay
+    // Scale to fit canvas
+    const s = W / 160;
+    ctx.scale(s, s);
 
-    // Scale based on canvas size
-    const scale = W / 200;
-    ctx.scale(scale, scale);
+    // ---- ENGINE EXHAUST (behind ship) ----
+    const exhaustPulse = 0.6 + Math.sin(t * 12) * 0.25 + Math.sin(t * 18) * 0.15;
+    const exhaustLen = 14 + Math.sin(t * 10) * 5;
 
-    // ---- DRAW BAT ----
-
-    // Body glow
-    const glow = ctx.createRadialGradient(0, 0, 2, 0, 0, 50);
-    glow.addColorStop(0, "rgba(239, 68, 68, 0.15)");
-    glow.addColorStop(1, "transparent");
-    ctx.fillStyle = glow;
+    // Outer exhaust glow
+    const exGlow = ctx.createRadialGradient(0, 18, 0, 0, 22, 20 * exhaustPulse);
+    exGlow.addColorStop(0, "rgba(239, 68, 68, 0.5)");
+    exGlow.addColorStop(0.4, "rgba(139, 92, 246, 0.25)");
+    exGlow.addColorStop(1, "transparent");
+    ctx.globalAlpha = 0.8;
+    ctx.fillStyle = exGlow;
     ctx.beginPath();
-    ctx.arc(0, 0, 50, 0, Math.PI * 2);
+    ctx.arc(0, 22, 20 * exhaustPulse, 0, Math.PI * 2);
     ctx.fill();
 
-    // ---- LEFT WING ----
-    ctx.save();
-    ctx.rotate(flapAngle);
-
-    // Wing membrane (inner section)
-    ctx.fillStyle = BAT_COLOR;
-    ctx.globalAlpha = 0.7;
+    // Left exhaust flame
+    ctx.globalAlpha = 0.7 * exhaustPulse;
+    const flameL = ctx.createLinearGradient(-6, 14, -6, 14 + exhaustLen);
+    flameL.addColorStop(0, "#ef4444");
+    flameL.addColorStop(0.3, "#f97316");
+    flameL.addColorStop(0.7, "#8b5cf6");
+    flameL.addColorStop(1, "transparent");
+    ctx.fillStyle = flameL;
     ctx.beginPath();
-    ctx.moveTo(-6, -4);
-    ctx.quadraticCurveTo(-20, -15 + flapAngle2 * 15, -40, -20 + flapAngle2 * 25);
-    ctx.lineTo(-55, -18 + flapAngle2 * 30);
-    ctx.quadraticCurveTo(-70, -12 + flapAngle2 * 35, -80, -8 + flapAngle2 * 40);
-    // Wing tip fingers
-    ctx.lineTo(-85, -5 + flapAngle2 * 42);
-    ctx.lineTo(-78, 2 + flapAngle2 * 20);
-    ctx.lineTo(-65, 6 + flapAngle2 * 15);
-    ctx.lineTo(-50, 8 + flapAngle2 * 10);
-    ctx.lineTo(-35, 10 + flapAngle2 * 5);
-    ctx.quadraticCurveTo(-18, 12, -6, 8);
+    ctx.moveTo(-9, 14);
+    ctx.quadraticCurveTo(-7, 14 + exhaustLen * 0.6, -6, 14 + exhaustLen);
+    ctx.quadraticCurveTo(-5, 14 + exhaustLen * 0.6, -3, 14);
     ctx.closePath();
     ctx.fill();
 
-    // Wing bone structure
-    ctx.globalAlpha = 0.5;
-    ctx.strokeStyle = BAT_DARK;
-    ctx.lineWidth = 1.5;
-    ctx.lineCap = "round";
-
-    // Main bone
+    // Right exhaust flame
+    const flameR = ctx.createLinearGradient(6, 14, 6, 14 + exhaustLen);
+    flameR.addColorStop(0, "#ef4444");
+    flameR.addColorStop(0.3, "#f97316");
+    flameR.addColorStop(0.7, "#8b5cf6");
+    flameR.addColorStop(1, "transparent");
+    ctx.fillStyle = flameR;
     ctx.beginPath();
-    ctx.moveTo(-6, -2);
-    ctx.quadraticCurveTo(-35, -12 + flapAngle2 * 18, -82, -6 + flapAngle2 * 40);
-    ctx.stroke();
-
-    // Finger bones
-    ctx.lineWidth = 1;
-    ctx.globalAlpha = 0.35;
-    ctx.beginPath();
-    ctx.moveTo(-45, -10 + flapAngle2 * 15);
-    ctx.lineTo(-65, 5 + flapAngle2 * 15);
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.moveTo(-55, -12 + flapAngle2 * 22);
-    ctx.lineTo(-50, 8 + flapAngle2 * 10);
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.moveTo(-65, -10 + flapAngle2 * 30);
-    ctx.lineTo(-35, 10 + flapAngle2 * 5);
-    ctx.stroke();
-
-    // Wing vein texture
-    ctx.globalAlpha = 0.12;
-    ctx.lineWidth = 0.5;
-    for (let i = 0; i < 5; i++) {
-      const py = -8 + i * 5;
-      ctx.beginPath();
-      ctx.moveTo(-15, py + flapAngle2 * 3);
-      ctx.quadraticCurveTo(-40, py + flapAngle2 * 12, -70, py + flapAngle2 * 25);
-      ctx.stroke();
-    }
-
-    ctx.restore();
-
-    // ---- RIGHT WING ----
-    ctx.save();
-    ctx.scale(-1, 1);
-    ctx.rotate(flapAngle);
-
-    ctx.fillStyle = BAT_COLOR;
-    ctx.globalAlpha = 0.7;
-    ctx.beginPath();
-    ctx.moveTo(-6, -4);
-    ctx.quadraticCurveTo(-20, -15 + flapAngle2 * 15, -40, -20 + flapAngle2 * 25);
-    ctx.lineTo(-55, -18 + flapAngle2 * 30);
-    ctx.quadraticCurveTo(-70, -12 + flapAngle2 * 35, -80, -8 + flapAngle2 * 40);
-    ctx.lineTo(-85, -5 + flapAngle2 * 42);
-    ctx.lineTo(-78, 2 + flapAngle2 * 20);
-    ctx.lineTo(-65, 6 + flapAngle2 * 15);
-    ctx.lineTo(-50, 8 + flapAngle2 * 10);
-    ctx.lineTo(-35, 10 + flapAngle2 * 5);
-    ctx.quadraticCurveTo(-18, 12, -6, 8);
+    ctx.moveTo(3, 14);
+    ctx.quadraticCurveTo(5, 14 + exhaustLen * 0.6, 6, 14 + exhaustLen);
+    ctx.quadraticCurveTo(7, 14 + exhaustLen * 0.6, 9, 14);
     ctx.closePath();
     ctx.fill();
 
-    ctx.globalAlpha = 0.5;
-    ctx.strokeStyle = BAT_DARK;
-    ctx.lineWidth = 1.5;
-    ctx.lineCap = "round";
+    // Center exhaust (bright core)
+    ctx.globalAlpha = 0.9 * exhaustPulse;
+    const flameC = ctx.createLinearGradient(0, 13, 0, 13 + exhaustLen * 1.2);
+    flameC.addColorStop(0, "#fbbf24");
+    flameC.addColorStop(0.2, "#ef4444");
+    flameC.addColorStop(0.6, "#8b5cf6");
+    flameC.addColorStop(1, "transparent");
+    ctx.fillStyle = flameC;
     ctx.beginPath();
-    ctx.moveTo(-6, -2);
-    ctx.quadraticCurveTo(-35, -12 + flapAngle2 * 18, -82, -6 + flapAngle2 * 40);
-    ctx.stroke();
-
-    ctx.lineWidth = 1;
-    ctx.globalAlpha = 0.35;
-    ctx.beginPath();
-    ctx.moveTo(-45, -10 + flapAngle2 * 15);
-    ctx.lineTo(-65, 5 + flapAngle2 * 15);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(-55, -12 + flapAngle2 * 22);
-    ctx.lineTo(-50, 8 + flapAngle2 * 10);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(-65, -10 + flapAngle2 * 30);
-    ctx.lineTo(-35, 10 + flapAngle2 * 5);
-    ctx.stroke();
-
-    ctx.globalAlpha = 0.12;
-    ctx.lineWidth = 0.5;
-    for (let i = 0; i < 5; i++) {
-      const py = -8 + i * 5;
-      ctx.beginPath();
-      ctx.moveTo(-15, py + flapAngle2 * 3);
-      ctx.quadraticCurveTo(-40, py + flapAngle2 * 12, -70, py + flapAngle2 * 25);
-      ctx.stroke();
-    }
-
-    ctx.restore();
-
-    // ---- BODY ----
-    ctx.globalAlpha = 0.9;
-
-    // Body fur
-    const bodyGrad = ctx.createLinearGradient(0, -14, 0, 18);
-    bodyGrad.addColorStop(0, BAT_COLOR);
-    bodyGrad.addColorStop(0.5, BAT_DARK);
-    bodyGrad.addColorStop(1, BAT_COLOR);
-    ctx.fillStyle = bodyGrad;
-    ctx.beginPath();
-    ctx.ellipse(0, 2, 7, 14, 0, 0, Math.PI * 2);
-    ctx.fill();
-
-    // ---- HEAD ----
-    const headGrad = ctx.createRadialGradient(0, -14, 1, 0, -14, 10);
-    headGrad.addColorStop(0, BAT_COLOR);
-    headGrad.addColorStop(1, BAT_DARK);
-    ctx.fillStyle = headGrad;
-    ctx.beginPath();
-    ctx.ellipse(0, -14, 8, 7, 0, 0, Math.PI * 2);
-    ctx.fill();
-
-    // ---- EARS ----
-    ctx.fillStyle = BAT_COLOR;
-    ctx.globalAlpha = 0.95;
-
-    // Left ear
-    ctx.beginPath();
-    ctx.moveTo(-5, -18);
-    ctx.quadraticCurveTo(-8, -32, -4, -35);
-    ctx.quadraticCurveTo(-1, -28, -2, -18);
+    ctx.moveTo(-4, 13);
+    ctx.quadraticCurveTo(-1, 13 + exhaustLen * 0.8, 0, 13 + exhaustLen * 1.2);
+    ctx.quadraticCurveTo(1, 13 + exhaustLen * 0.8, 4, 13);
     ctx.closePath();
     ctx.fill();
 
-    // Right ear
-    ctx.beginPath();
-    ctx.moveTo(5, -18);
-    ctx.quadraticCurveTo(8, -32, 4, -35);
-    ctx.quadraticCurveTo(1, -28, 2, -18);
-    ctx.closePath();
-    ctx.fill();
-
-    // Inner ears
-    ctx.fillStyle = BAT_DARK;
-    ctx.globalAlpha = 0.5;
-    ctx.beginPath();
-    ctx.moveTo(-4, -19);
-    ctx.quadraticCurveTo(-6, -28, -4, -31);
-    ctx.quadraticCurveTo(-2, -26, -2, -19);
-    ctx.closePath();
-    ctx.fill();
-    ctx.beginPath();
-    ctx.moveTo(4, -19);
-    ctx.quadraticCurveTo(6, -28, 4, -31);
-    ctx.quadraticCurveTo(2, -26, 2, -19);
-    ctx.closePath();
-    ctx.fill();
-
-    // ---- EYES ----
-    // Glowing eyes
-    const eyeGlow = ctx.createRadialGradient(-4, -14, 0, -4, -14, 6);
-    eyeGlow.addColorStop(0, EYE_COLOR);
-    eyeGlow.addColorStop(0.5, "rgba(239, 68, 68, 0.3)");
-    eyeGlow.addColorStop(1, "transparent");
-    ctx.globalAlpha = 0.6;
-    ctx.fillStyle = eyeGlow;
-    ctx.beginPath();
-    ctx.arc(-4, -14, 6, 0, Math.PI * 2);
-    ctx.fill();
-
-    const eyeGlow2 = ctx.createRadialGradient(4, -14, 0, 4, -14, 6);
-    eyeGlow2.addColorStop(0, EYE_COLOR);
-    eyeGlow2.addColorStop(0.5, "rgba(239, 68, 68, 0.3)");
-    eyeGlow2.addColorStop(1, "transparent");
-    ctx.fillStyle = eyeGlow2;
-    ctx.beginPath();
-    ctx.arc(4, -14, 6, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Eye orbs
+    // ---- MAIN BODY ----
     ctx.globalAlpha = 1;
-    ctx.fillStyle = EYE_COLOR;
+    const bodyGrad = ctx.createLinearGradient(0, -28, 0, 16);
+    bodyGrad.addColorStop(0, "#6d28d9");
+    bodyGrad.addColorStop(0.3, "#4c1d95");
+    bodyGrad.addColorStop(0.6, "#3b0764");
+    bodyGrad.addColorStop(1, "#1e1b4b");
+    ctx.fillStyle = bodyGrad;
+
+    // Sleek fuselage
     ctx.beginPath();
-    ctx.ellipse(-4, -14, 2.2, 2.8, 0, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.beginPath();
-    ctx.ellipse(4, -14, 2.2, 2.8, 0, 0, Math.PI * 2);
+    ctx.moveTo(0, -30);                          // Nose tip
+    ctx.bezierCurveTo(-3, -24, -7, -16, -10, -4); // Left upper curve
+    ctx.bezierCurveTo(-11, 2, -11, 8, -10, 14);   // Left lower
+    ctx.lineTo(-6, 16);                            // Left engine base
+    ctx.lineTo(6, 16);                             // Right engine base
+    ctx.lineTo(10, 14);                            // Right lower
+    ctx.bezierCurveTo(11, 8, 11, 2, 10, -4);      // Right upper curve
+    ctx.bezierCurveTo(7, -16, 3, -24, 0, -30);    // Right to nose
+    ctx.closePath();
     ctx.fill();
 
-    // Pupils (follow a subtle pattern)
-    const pupilX = Math.sin(t * 0.5) * 0.5;
-    const pupilY = Math.cos(t * 0.7) * 0.3;
-    ctx.fillStyle = "#0a0a0f";
-    ctx.beginPath();
-    ctx.ellipse(-4 + pupilX, -14 + pupilY, 1, 1.6, 0, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.beginPath();
-    ctx.ellipse(4 + pupilX, -14 + pupilY, 1, 1.6, 0, 0, Math.PI * 2);
-    ctx.fill();
-
-    // ---- NOSE ----
-    ctx.globalAlpha = 0.6;
-    ctx.fillStyle = BAT_DARK;
-    ctx.beginPath();
-    ctx.ellipse(-1.5, -9, 1, 0.8, 0, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.beginPath();
-    ctx.ellipse(1.5, -9, 1, 0.8, 0, 0, Math.PI * 2);
-    ctx.fill();
-
-    // ---- FEET ----
+    // Body panel line highlights
+    ctx.strokeStyle = "rgba(139, 92, 246, 0.3)";
+    ctx.lineWidth = 0.6;
     ctx.globalAlpha = 0.7;
-    ctx.fillStyle = BAT_COLOR;
-    // Left foot
+
+    // Center ridge
     ctx.beginPath();
-    ctx.moveTo(-4, 15);
-    ctx.lineTo(-6, 20);
-    ctx.lineTo(-3, 18);
-    ctx.lineTo(-4, 22);
-    ctx.lineTo(-1, 18);
-    ctx.lineTo(-2, 15);
+    ctx.moveTo(0, -28);
+    ctx.lineTo(0, 14);
+    ctx.stroke();
+
+    // Side panel lines
+    ctx.beginPath();
+    ctx.moveTo(-6, -18);
+    ctx.bezierCurveTo(-8, -8, -8, 4, -7, 14);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(6, -18);
+    ctx.bezierCurveTo(8, -8, 8, 4, 7, 14);
+    ctx.stroke();
+
+    // ---- WINGS ----
+    ctx.globalAlpha = 1;
+    const wingGrad = ctx.createLinearGradient(-35, 0, 35, 0);
+    wingGrad.addColorStop(0, "#4c1d95");
+    wingGrad.addColorStop(0.3, "#6d28d9");
+    wingGrad.addColorStop(0.5, "#7c3aed");
+    wingGrad.addColorStop(0.7, "#6d28d9");
+    wingGrad.addColorStop(1, "#4c1d95");
+    ctx.fillStyle = wingGrad;
+
+    // Left wing
+    ctx.beginPath();
+    ctx.moveTo(-9, 0);
+    ctx.lineTo(-34, 8);
+    ctx.lineTo(-36, 12);
+    ctx.lineTo(-30, 14);
+    ctx.lineTo(-10, 10);
     ctx.closePath();
     ctx.fill();
-    // Right foot
+
+    // Right wing
     ctx.beginPath();
-    ctx.moveTo(4, 15);
-    ctx.lineTo(6, 20);
-    ctx.lineTo(3, 18);
-    ctx.lineTo(4, 22);
-    ctx.lineTo(1, 18);
-    ctx.lineTo(2, 15);
+    ctx.moveTo(9, 0);
+    ctx.lineTo(34, 8);
+    ctx.lineTo(36, 12);
+    ctx.lineTo(30, 14);
+    ctx.lineTo(10, 10);
     ctx.closePath();
+    ctx.fill();
+
+    // Wing edge glow
+    ctx.strokeStyle = "#8b5cf6";
+    ctx.lineWidth = 0.8;
+    ctx.globalAlpha = 0.5;
+
+    ctx.beginPath();
+    ctx.moveTo(-9, 0);
+    ctx.lineTo(-34, 8);
+    ctx.lineTo(-36, 12);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(9, 0);
+    ctx.lineTo(34, 8);
+    ctx.lineTo(36, 12);
+    ctx.stroke();
+
+    // Wing tip lights (blinking)
+    const blink = Math.sin(t * 4) > 0 ? 1 : 0.2;
+
+    // Left tip
+    ctx.globalAlpha = blink;
+    ctx.fillStyle = "#ef4444";
+    ctx.beginPath();
+    ctx.arc(-35, 10, 1.5, 0, Math.PI * 2);
+    ctx.fill();
+    const tipGlowL = ctx.createRadialGradient(-35, 10, 0, -35, 10, 5);
+    tipGlowL.addColorStop(0, "rgba(239, 68, 68, 0.5)");
+    tipGlowL.addColorStop(1, "transparent");
+    ctx.fillStyle = tipGlowL;
+    ctx.beginPath();
+    ctx.arc(-35, 10, 5, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Right tip
+    ctx.fillStyle = "#22c55e";
+    ctx.beginPath();
+    ctx.arc(35, 10, 1.5, 0, Math.PI * 2);
+    ctx.fill();
+    const tipGlowR = ctx.createRadialGradient(35, 10, 0, 35, 10, 5);
+    tipGlowR.addColorStop(0, "rgba(34, 197, 94, 0.5)");
+    tipGlowR.addColorStop(1, "transparent");
+    ctx.fillStyle = tipGlowR;
+    ctx.beginPath();
+    ctx.arc(35, 10, 5, 0, Math.PI * 2);
+    ctx.fill();
+
+    // ---- COCKPIT (canopy) ----
+    ctx.globalAlpha = 0.85;
+    const cockpitGrad = ctx.createRadialGradient(0, -14, 1, 0, -14, 8);
+    cockpitGrad.addColorStop(0, "rgba(139, 92, 246, 0.6)");
+    cockpitGrad.addColorStop(0.5, "rgba(109, 40, 217, 0.4)");
+    cockpitGrad.addColorStop(1, "rgba(76, 29, 149, 0.2)");
+    ctx.fillStyle = cockpitGrad;
+
+    ctx.beginPath();
+    ctx.moveTo(0, -24);
+    ctx.bezierCurveTo(-4, -18, -5, -12, -4, -6);
+    ctx.bezierCurveTo(-2, -4, 2, -4, 4, -6);
+    ctx.bezierCurveTo(5, -12, 4, -18, 0, -24);
+    ctx.closePath();
+    ctx.fill();
+
+    // Cockpit frame
+    ctx.strokeStyle = "rgba(196, 181, 253, 0.5)";
+    ctx.lineWidth = 0.5;
+    ctx.globalAlpha = 0.6;
+    ctx.stroke();
+
+    // Cockpit reflection
+    ctx.globalAlpha = 0.3;
+    ctx.strokeStyle = "rgba(255, 255, 255, 0.4)";
+    ctx.lineWidth = 0.4;
+    ctx.beginPath();
+    ctx.moveTo(-1, -22);
+    ctx.bezierCurveTo(-3, -16, -3, -10, -2, -7);
+    ctx.stroke();
+
+    // ---- NOSE LIGHT ----
+    const noseGlow = 0.5 + Math.sin(t * 3) * 0.3;
+    ctx.globalAlpha = noseGlow;
+    ctx.fillStyle = "#c084fc";
+    ctx.beginPath();
+    ctx.arc(0, -29, 1.2, 0, Math.PI * 2);
+    ctx.fill();
+
+    const noseG = ctx.createRadialGradient(0, -29, 0, 0, -29, 6);
+    noseG.addColorStop(0, "rgba(192, 132, 252, 0.5)");
+    noseG.addColorStop(1, "transparent");
+    ctx.fillStyle = noseG;
+    ctx.beginPath();
+    ctx.arc(0, -29, 6, 0, Math.PI * 2);
+    ctx.fill();
+
+    // ---- ENGINE NOZZLES ----
+    ctx.globalAlpha = 0.9;
+    [-6, 6].forEach(ex => {
+      const nozGrad = ctx.createLinearGradient(ex, 12, ex, 17);
+      nozGrad.addColorStop(0, "#4c1d95");
+      nozGrad.addColorStop(1, "#1e1b4b");
+      ctx.fillStyle = nozGrad;
+      ctx.beginPath();
+      ctx.moveTo(ex - 3.5, 13);
+      ctx.lineTo(ex - 4, 17);
+      ctx.lineTo(ex + 4, 17);
+      ctx.lineTo(ex + 3.5, 13);
+      ctx.closePath();
+      ctx.fill();
+
+      // Nozzle rim glow
+      ctx.strokeStyle = "rgba(239, 68, 68, 0.4)";
+      ctx.lineWidth = 0.6;
+      ctx.globalAlpha = 0.6 + exhaustPulse * 0.3;
+      ctx.beginPath();
+      ctx.moveTo(ex - 4, 17);
+      ctx.lineTo(ex + 4, 17);
+      ctx.stroke();
+    });
+
+    // ---- AMBIENT SHIP GLOW ----
+    ctx.globalAlpha = 0.15;
+    const shipGlow = ctx.createRadialGradient(0, 0, 5, 0, 0, 40);
+    shipGlow.addColorStop(0, "rgba(139, 92, 246, 0.3)");
+    shipGlow.addColorStop(1, "transparent");
+    ctx.fillStyle = shipGlow;
+    ctx.beginPath();
+    ctx.arc(0, 0, 40, 0, Math.PI * 2);
     ctx.fill();
 
     ctx.restore();
